@@ -3,7 +3,8 @@
 Defines the set of symbols used in text input to the model.
 """
 _pad = "_"
-_punctuation = ';:,.!?¡¿—…"«»“” '
+# _punctuation = ';:,.!?¡¿—…"«»“” ' # default punctuations
+_punctuation = ';:,.!?¡¿—…"«»“”`\'1234567890- ' # new
 _letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 _letters_ipa = (
     "ɑɐɒæɓʙβɔɕçɗɖðʤəɘɚɛɜɝɞɟʄɡɠɢʛɦɧħɥʜɨɪʝɭɬɫɮʟɱɯɰŋɳɲɴøɵɸθœɶʘɹɺɾɻʀʁɽʂʃʈʧʉʊʋⱱʌɣɤʍχʎʏʑʐʒʔʡʕʢǀǁǂǃˈˌːˑʼʴʰʱʲʷˠˤ˞↓↑→↗↘'̩'ᵻ"
