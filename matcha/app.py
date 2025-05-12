@@ -59,7 +59,14 @@ assert_model_downloaded(VOCODER_LOC("hifigan_univ_v1"), VOCODER_URLS["hifigan_un
 device = get_device(args)
 
 # Load default model
-model = load_matcha(args.model, MATCHA_TTS_LOC(args.model), device)
+# Load model
+if hasattr(args, "checkpoint_path") and args.checkpoint_path:
+    print(f"[🍵] Loading custom model from {args.checkpoint_path}")
+    model = load_matcha("custom", args.checkpoint_path, device)
+else:
+    model = load_matcha(args.model, MATCHA_TTS_LOC(args.model), device)
+
+# model = load_matcha(args.model, MATCHA_TTS_LOC(args.model), device)
 vocoder, denoiser = load_vocoder(args.vocoder, VOCODER_LOC(args.vocoder), device)
 
 
