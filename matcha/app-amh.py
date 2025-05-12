@@ -1,18 +1,20 @@
 import tempfile
 from pathlib import Path
+import os
 
 import gradio as gr
 import soundfile as sf
 import torch
 
 from matcha.cli import (
+    VOCODER_URLS,
     get_device,
     load_matcha,
     load_vocoder,
     process_text,
     to_waveform,
 )
-from matcha.utils.utils import get_user_data_dir, plot_tensor
+from matcha.utils.utils import get_user_data_dir, plot_tensor, assert_model_downloaded
 
 # Configuration - Replace with your model path
 CUSTOM_CHECKPOINT_PATH = "/content/matcha-tts/logs/train/tuba/runs/2025-05-10_18-41-29/checkpoints/last.ckpt"
@@ -21,6 +23,10 @@ LOCATION = Path(get_user_data_dir())
 
 def VOCODER_LOC(x):
     return LOCATION / f"{x}"
+
+# Ensure vocoder is downloaded
+vocoder_path = VOCODER_LOC(VOCODER_NAME)
+assert_model_downloaded(vocoder_path, VOCODER_URLS[VOCODER_NAME])
 
 # Setup device
 device = get_device(None)
