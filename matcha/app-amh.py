@@ -14,7 +14,7 @@ from matcha.cli import (
 )
 from matcha.utils.utils import get_user_data_dir, plot_tensor
 
-
+# Configuration - Replace with your model path
 CUSTOM_CHECKPOINT_PATH = "/content/matcha-tts/logs/train/tuba/runs/2025-05-10_18-41-29/checkpoints/last.ckpt"
 VOCODER_NAME = "hifigan_univ_v1"
 LOCATION = Path(get_user_data_dir())
@@ -22,6 +22,7 @@ LOCATION = Path(get_user_data_dir())
 def VOCODER_LOC(x):
     return LOCATION / f"{x}"
 
+# Setup device
 device = get_device(None)
 
 # Load custom model
@@ -32,8 +33,10 @@ vocoder, denoiser = load_vocoder(VOCODER_NAME, VOCODER_LOC(VOCODER_NAME), device
 @torch.inference_mode()
 def synthesize(text, n_timesteps=10, temperature=0.667, length_scale=0.95):
     """Synthesize speech from text using the custom model."""
+    # Process text - directly from CLI
     text_processed = process_text(1, text, device)
     
+    # Generate mel spectrogram - directly from CLI
     output = model.synthesise(
         text_processed["x"],
         text_processed["x_lengths"],
@@ -43,6 +46,7 @@ def synthesize(text, n_timesteps=10, temperature=0.667, length_scale=0.95):
         length_scale=length_scale,
     )
     
+    # Convert to waveform - directly from CLI
     output["waveform"] = to_waveform(output["mel"], vocoder, denoiser)
     
     # Save to temporary file
