@@ -21,9 +21,8 @@ with open(os.path.join(cwd, "matcha", "VERSION"), encoding="utf-8") as fin:
 
 
 def get_requires():
-    requirements = os.path.join(os.path.dirname(__file__), "requirements.txt")
-    with open(requirements, encoding="utf-8") as reqfile:
-        return [str(r).strip() for r in reqfile]
+    # Dependencies are managed in pyproject.toml
+    return []
 
 
 setup(
@@ -34,7 +33,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Shivam Mehta",
     author_email="shivam.mehta25@gmail.com",
-    url="https://shivammehta25.github.io/Matcha-TTS",
+    url="https://shivammehta.github.io/Matcha-TTS",
     install_requires=get_requires(),
     include_dirs=[numpy.get_include()],
     include_package_data=True,
