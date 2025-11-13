@@ -15,7 +15,7 @@ _letters = "abcdefghijklmnopqrstuvwxyz"
 # Export all symbols:
 symbols = [_pad] + list(_punctuation) + list(_letters)
 
-print(len(symbols))
+# print(len(symbols))
 
 # Special symbol ids
 SPACE_ID = symbols.index(" ")

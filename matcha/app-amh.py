@@ -17,7 +17,8 @@ from matcha.cli import (
 from matcha.utils.utils import get_user_data_dir, plot_tensor, assert_model_downloaded
 
 # Configuration - Replace with your model path
-CUSTOM_CHECKPOINT_PATH = "/content/matcha-tts/logs/train/tuba/runs/2025-05-10_18-41-29/checkpoints/last.ckpt"
+CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-11-13_13-00-46/checkpoints/last.ckpt"
+
 VOCODER_NAME = "hifigan_univ_v1"
 LOCATION = Path(get_user_data_dir())
 
@@ -29,7 +30,10 @@ vocoder_path = VOCODER_LOC(VOCODER_NAME)
 assert_model_downloaded(vocoder_path, VOCODER_URLS[VOCODER_NAME])
 
 # Setup device
-device = get_device(None)
+class MockArgs:
+    cpu = False
+
+device = get_device(MockArgs())
 
 # Load custom model
 print(f"[🍵] Loading custom model from {CUSTOM_CHECKPOINT_PATH}")
