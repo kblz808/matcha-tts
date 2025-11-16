@@ -1,6 +1,5 @@
 import tempfile
 from pathlib import Path
-import os
 
 import gradio as gr
 import soundfile as sf
@@ -14,10 +13,11 @@ from matcha.cli import (
     process_text,
     to_waveform,
 )
-from matcha.utils.utils import get_user_data_dir, plot_tensor, assert_model_downloaded
+from matcha.utils.utils import get_user_data_dir, assert_model_downloaded
 
 # Configuration - Replace with your model path
-CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-11-13_13-00-46/checkpoints/last.ckpt"
+CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-11-15_08-31-56/checkpoints/last.ckpt"
+# CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-05-10_18-41-29/checkpoints/last.ckpt"
 
 VOCODER_NAME = "hifigan_univ_v1"
 LOCATION = Path(get_user_data_dir())
