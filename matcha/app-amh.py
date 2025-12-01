@@ -16,8 +16,8 @@ from matcha.cli import (
 from matcha.utils.utils import get_user_data_dir, assert_model_downloaded
 
 # Configuration - Replace with your model path
-CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-11-15_08-31-56/checkpoints/last.ckpt"
-# CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-05-10_18-41-29/checkpoints/last.ckpt"
+# CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-11-15_08-31-56/checkpoints/last.ckpt"
+CUSTOM_CHECKPOINT_PATH = "/mnt/usb-ai/projects/matcha-tts/logs/train/tuba/runs/2025-05-10_18-41-29/checkpoints/last.ckpt"
 
 VOCODER_NAME = "hifigan_univ_v1"
 LOCATION = Path(get_user_data_dir())
@@ -38,7 +38,9 @@ device = get_device(MockArgs())
 # Load custom model
 print(f"[🍵] Loading custom model from {CUSTOM_CHECKPOINT_PATH}")
 model = load_matcha("custom_model", CUSTOM_CHECKPOINT_PATH, device)
+print("[🍵] Model loaded successfully")
 vocoder, denoiser = load_vocoder(VOCODER_NAME, VOCODER_LOC(VOCODER_NAME), device)
+print("[🍵] Vocoder loaded successfully")
 
 @torch.inference_mode()
 def synthesize(text, n_timesteps=10, temperature=0.667, length_scale=0.95):
